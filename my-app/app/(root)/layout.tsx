@@ -1,12 +1,17 @@
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
+
 export default function RootLayout({
     children,
   }: Readonly<{
     children: React.ReactNode;
   }>) {
     return (
-      <html lang="en">
-        <body>{children}</body>
-      </html>
+      <div className="flex h-screen flex-col">
+        <Header/>
+        <body className="flex-1">{children}</body>
+        <Footer/>
+      </div>
     );
   }
   
