@@ -69,23 +69,6 @@ export default function Home() {
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Card/>
         </div>
-
-      </section>
-      <section id="about-us">
-        <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-8">
-          <h2 className="h2-bold">About Us</h2>
-          <p className="p-regular-20 md:p-regular-24 pr-4 text-justify">
-            {" "}
-            Eventify is a platform that helps you find the perfect event for
-            your needs. We provide a wide range of events, from corporate
-            conferences to community fundraisers, to events that are not just
-            for fun but also for your health and wellness.
-          </p>
-          <Button className="rounded-none sm:w-fit">
-            <Link href="#events">Explore Now</Link>
-          </Button>
-        </div>
-        
       </section>
     </>
   );

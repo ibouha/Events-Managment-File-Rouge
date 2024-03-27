@@ -1,22 +1,18 @@
 import mongoose from "mongoose" ;
-import dotenv from "dotenv";
 
-dotenv.config();
 const MONGODB_URI=process.env.MONGODB_URL;
+let cached = (global as any).mongoose || {conn : null , promise : null};
 
 const connect = async () =>{
-    try {
-        await mongoose.connect(MONGODB_URI!,{
-            dbName:"eventify",
+   if (cached.conn) return cached.conn ;
+   if (!MONGODB_URI) throw new Error('MONGODB_URI is missing');
 
-        });
-        console.log("Connected to MongoDB");
-        
-    } catch (error) {
-
-        throw new Error("Could not connect to MongoDB")
-        
-    }
+   cached.promise = cached.promise || mongoose.connect(MONGODB_URI,{
+    dbName:"eventify",
+    bufferCommands:false,
+   })
+   cached.conn = await cached.promise ;
+   return cached.conn ;
 }
     
 export default connect;
