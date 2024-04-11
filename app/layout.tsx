@@ -3,19 +3,20 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const poppins = Poppins({ subsets: ["latin"],
-weight:['400','500','600','700'],
-variable:'--font-poppins' ,
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
   title: "Eventify",
   description: "Eventify is a platform for event management.",
-  icons:{
-    icon: "../public/assets/images/icon2.svg"
-  }
+  icons: {
+    icon: "../public/assets/images/icon2.svg",
+  },
 };
- 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,9 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-        <html lang="en">
-          <body className={poppins.variable}>{children}</body>
-        </html>
+      <html lang="en">
+        <body className={poppins.variable}>{children}</body>
+      </html>
     </ClerkProvider>
   );
 }

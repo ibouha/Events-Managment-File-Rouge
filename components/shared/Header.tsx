@@ -3,9 +3,9 @@ import Link from "next/link";
 import React from "react";
 import logo from "../../public/assets/images/eventify.svg";
 import { Button } from "../ui/button";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import NavItems from "./NavItems";
 import MobileNav from "./MobileNav";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 function Header() {
   return (
@@ -20,23 +20,20 @@ function Header() {
             height={34}
           />
         </Link>
+
         <SignedIn>
           <nav className="md:flex-between hidden w-full max-w-xs">
-
             <NavItems />
           </nav>
         </SignedIn>
+
         <div className="flex w-32 justify-end gap-3">
           <SignedIn>
-            <UserButton afterSignOutUrl="/"/>
-            <MobileNav/>
+            <UserButton afterSignOutUrl="/" />
+            <MobileNav />
           </SignedIn>
           <SignedOut>
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#F2BD00] hover:bg-black text-black hover:text-white font-extrabold rounded-none "
-            >
+            <Button asChild size="lg" variant="link" className="rounded-none">
               <Link href="/sign-in" className="text-black">
                 Login
               </Link>
