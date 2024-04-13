@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { DeleteConfirmation } from './DeleteConfirmation'
+import { MdArrowOutward } from "react-icons/md";
+
 
 type CardProps = {
   event: IEvent,
@@ -65,7 +67,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">
               <p className="text-primary-500">Order Details</p>
-              <Image src="/assets/icons/arrow.svg" alt="search" width={10} height={10} />
+              <MdArrowOutward className='text-yellow-300 w-6 h-6' width={30} height={30} />
             </Link>
           )}
         </div>

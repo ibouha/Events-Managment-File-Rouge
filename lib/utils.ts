@@ -49,7 +49,7 @@ export const formatPrice = (price: string) => {
   const amount = parseFloat(price)
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'DH',
+    currency: 'MAD',
   }).format(amount)
 
   return formattedPrice
