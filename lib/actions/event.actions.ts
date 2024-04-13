@@ -8,12 +8,8 @@ import Category from '@/lib/database/models/category.model'
 import { handleError } from '@/lib/utils'
 
 import {
-  CreateEventParams,
-  UpdateEventParams,
-  DeleteEventParams,
-  GetAllEventsParams,
-  GetEventsByUserParams,
-  GetRelatedEventsByCategoryParams,
+  CreateEventParams, DeleteEventParams, GetAllEventsParams, GetRelatedEventsByCategoryParams, UpdateEventParams,
+  
 } from '@/types'
 import {connectToDatabase} from '../database'
 
@@ -59,6 +55,7 @@ export async function getEventById(eventId: string) {
   }
 }
 
+
 // UPDATE
 export async function updateEvent({ userId, event, path }: UpdateEventParams) {
   try {
@@ -77,18 +74,6 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
     revalidatePath(path)
 
     return JSON.parse(JSON.stringify(updatedEvent))
-  } catch (error) {
-    handleError(error)
-  }
-}
-
-// DELETE
-export async function deleteEvent({ eventId, path }: DeleteEventParams) {
-  try {
-    await connectToDatabase()
-
-    const deletedEvent = await Event.findByIdAndDelete(eventId)
-    if (deletedEvent) revalidatePath(path)
   } catch (error) {
     handleError(error)
   }
@@ -123,27 +108,18 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllE
   }
 }
 
-// GET EVENTS BY ORGANIZER
-export async function getEventsByUser({ userId, limit = 6, page }: GetEventsByUserParams) {
+// DELETE
+export async function deleteEvent({ eventId, path }: DeleteEventParams) {
   try {
     await connectToDatabase()
 
-    const conditions = { organizer: userId }
-    const skipAmount = (page - 1) * limit
-
-    const eventsQuery = Event.find(conditions)
-      .sort({ createdAt: 'desc' })
-      .skip(skipAmount)
-      .limit(limit)
-
-    const events = await populateEvent(eventsQuery)
-    const eventsCount = await Event.countDocuments(conditions)
-
-    return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
+    const deletedEvent = await Event.findByIdAndDelete(eventId)
+    if (deletedEvent) revalidatePath(path)
   } catch (error) {
     handleError(error)
   }
 }
+
 
 // GET RELATED EVENTS: EVENTS WITH SAME CATEGORY
 export async function getRelatedEventsByCategory({
@@ -171,3 +147,4 @@ export async function getRelatedEventsByCategory({
     handleError(error)
   }
 }
+

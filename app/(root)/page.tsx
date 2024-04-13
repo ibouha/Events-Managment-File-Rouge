@@ -20,8 +20,22 @@ import sourire from "../../public/assets/images/sourire.png";
 import Search from "@/components/shared/Search";
 import Image from "next/image";
 import EventCard from "@/components/shared/EventCard";
-import ProductCard from "@/components/shared/ProductCard";
-export default function Home() {
+import Collection from "@/components/shared/Collection";
+import CategoryFilter from "@/components/shared/CategoryFilter";
+import { getAllEvents } from "@/lib/actions/event.actions";
+import { SearchParamProps } from "@/types"; 
+
+export default async function Home({ searchParams }: SearchParamProps) {
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || '';
+  const category = (searchParams?.category as string) || '';
+
+  const events = await getAllEvents({
+    query: searchText,
+    category,
+    page,
+    limit: 6
+  })
   return (
     <>
       <section className="bg-yellow-100 bg-dotted-pattern bg-contain py-5 md:py-10 ">
@@ -117,67 +131,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        id="events"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
-      >
-        <h2 className="h2-bold text-blue-950">
-          Trust by <br /> Thousands of Events
-        </h2>
+      <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+        <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
+
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
+          <CategoryFilter />
         </div>
-        <div
-          id="Projects"
-          className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-[42px] mt-10 mb-5"
-        >
-          {[
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 1",
-              price: "$149",
-              originalPrice: "$199",
-            },
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 2",
-              price: "$149",
-              originalPrice: "$199",
-            },
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 1",
-              price: "$149",
-              originalPrice: "$199",
-            },
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 2",
-              price: "$149",
-              originalPrice: "$199",
-            },
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 1",
-              price: "$149",
-              originalPrice: "$199",
-            },
-            {
-              imageUrl:
-                "https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-              productName: "Product Name 2",
-              price: "$149",
-              originalPrice: "$199",
-            },
-          ].map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
-        </div>
+
+        <Collection 
+          data={events?.data}
+          emptyTitle="No Events Found"
+          emptyStateSubtext="Come back later"
+          collectionType="All_Events"
+          limit={6}
+          page={page}
+          totalPages={events?.totalPages}
+        />
       </section>
       <section
         id="allCategorys"

@@ -1,8 +1,14 @@
 import EventForm from '@/components/shared/EventForm'
+import { auth } from '@clerk/nextjs'
 import React from 'react'
 
 
 const CreateEvent = () => {
+  const {sessionClaims} = auth() ;
+
+  const userId = sessionClaims?.userId as string ;
+  console.log(userId);
+
    
   return (
     <>
@@ -10,7 +16,7 @@ const CreateEvent = () => {
         <h3 className='wrapper h3-bold text-center text-blue-950 sm:text-left'>Create Event</h3>
     </section>
     <div className="wrapper my-8">
-        <EventForm  type="Create" />
+        <EventForm userId={userId}  type="Create" />
       </div>
     </>
   )

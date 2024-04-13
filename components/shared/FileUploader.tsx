@@ -4,7 +4,7 @@ import { useCallback, Dispatch, SetStateAction } from 'react'
 import type { FileWithPath } from '@uploadthing/react'
 import { useDropzone } from '@uploadthing/react/hooks'
 import { generateClientDropzoneAccept } from 'uploadthing/client'
-import upload from "../../public/icons/upload.svg"
+import upload from "../../public/assets/icons/upload.svg"
 
 import { Button } from '@/components/ui/button'
 import { convertFileToUrl } from '@/lib/utils'
