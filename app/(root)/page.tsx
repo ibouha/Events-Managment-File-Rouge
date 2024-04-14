@@ -5,16 +5,10 @@ import image1 from "../../public/assets/images/main-stage.png";
 import image2 from "../../public/assets/images/music-fanclub.png";
 import image3 from "../../public/assets/images/people-dancing.png";
 import image4 from "../../public/assets/images/people-taking-part.png";
-import imageFamily from "../../public/assets/images/famille.png";
-import affairesImage from "../../public/assets/images/affaires.png";
-import nourritureImage from "../../public/assets/images/nourriture.png";
-import santeImage from "../../public/assets/images/sante.png";
-import beauteImage from "../../public/assets/images/beaute.jpg";
 import toto from "../../public/assets/images/elgrandetoto.png";
 import sourire from "../../public/assets/images/sourire.png";
 import Search from "@/components/shared/Search";
 import Image from "next/image";
-import EventCard from "@/components/shared/EventCard";
 import Collection from "@/components/shared/Collection";
 import CategoryFilter from "@/components/shared/CategoryFilter";
 import { getAllEvents } from "@/lib/actions/event.actions";
@@ -144,31 +138,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           totalPages={events?.totalPages}
         />
       </section>
-      <section
-        id="allCategorys"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
-      >
-        <h2 className="h2-bold text-blue-950">
-          All events by areas of activity
-        </h2>
-
-        <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 xl:gap-2">
-          {[
-            { src: imageFamily, alt: "Family", category: "Family" },
-            { src: affairesImage, alt: "Business", category: "Business" },
-            { src: santeImage, alt: "Health", category: "Health" },
-            { src: nourritureImage, alt: "Food", category: "Food" },
-            { src: beauteImage, alt: "Beauty", category: "Beauty" },
-          ].map((image, index) => (
-            <EventCard
-              key={index}
-              src={image.src}
-              alt={image.alt}
-              category={image.category}
-            />
-          ))}
-        </div>
-      </section>
+      
       
     </>
   );
