@@ -5,11 +5,6 @@ import image1 from "../../public/assets/images/main-stage.png";
 import image2 from "../../public/assets/images/music-fanclub.png";
 import image3 from "../../public/assets/images/people-dancing.png";
 import image4 from "../../public/assets/images/people-taking-part.png";
-import casa from "../../public/assets/images/casa.jpg";
-import agadir from "../../public/assets/images/agadir.jpg";
-import marakech from "../../public/assets/images/marakech.jpg";
-import tangier from "../../public/assets/images/tanger.jpg";
-import rabat from "../../public/assets/images/rabat.jpg";
 import imageFamily from "../../public/assets/images/famille.png";
 import affairesImage from "../../public/assets/images/affaires.png";
 import nourritureImage from "../../public/assets/images/nourriture.png";
@@ -174,66 +169,7 @@ export default async function Home({ searchParams }: SearchParamProps) {
           ))}
         </div>
       </section>
-      <section
-        id="CategoryByCitys"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12"
-      >
-        <h2 className="h2-bold text-blue-950">Browse events by city</h2>
-
-        <div className="flex gap-2">
-          <a href="#" className="w-1/2">
-            <Image
-              src={agadir.src}
-              width={200}
-              height={200}
-              alt="nothing"
-              className="w-full h-full object-cover"
-            />
-          </a>
-          <div className="w-1/2 grid grid-cols-2 gap-2">
-            <a href="#" className="relative w-full aspect-w-1 aspect-h-1">
-              {" "}
-              <Image
-                src={casa.src}
-                width={300}
-                height={300}
-                alt="nothing"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </a>
-            <a href="#" className="relative w-full aspect-w-1 aspect-h-1">
-              {" "}
-              <Image
-                src={marakech.src}
-                width={300}
-                height={300}
-                alt="nothing"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </a>
-            <a href="#" className="relative w-full aspect-w-1 aspect-h-1">
-              {" "}
-              <Image
-                src={rabat.src}
-                width={300}
-                height={300}
-                alt="nothing"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </a>
-            <a href="#" className="relative w-full aspect-w-1 aspect-h-1">
-              {" "}
-              <Image
-                src={tangier.src}
-                width={300}
-                height={300}
-                alt="nothing"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </a>
-          </div>
-        </div>
-      </section>
+      
     </>
   );
 }
