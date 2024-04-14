@@ -1,3 +1,5 @@
+"use server"
+
 import {  CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
 import { handleError } from '../utils';
 import { connectToDatabase } from '../database';
