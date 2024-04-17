@@ -5,8 +5,6 @@ import image1 from "../../public/assets/images/main-stage.png";
 import image2 from "../../public/assets/images/music-fanclub.png";
 import image3 from "../../public/assets/images/people-dancing.png";
 import image4 from "../../public/assets/images/people-taking-part.png";
-import toto from "../../public/assets/images/elgrandetoto.png";
-import sourire from "../../public/assets/images/sourire.png";
 import Search from "@/components/shared/Search";
 import Image from "next/image";
 import Collection from "@/components/shared/Collection";
@@ -80,45 +78,6 @@ export default async function Home({ searchParams }: SearchParamProps) {
         </div>
       </section>
 
-      <section
-        id="recommended"
-        className="wrapper my-8 flex flex-col gap-8 md:gap-12 "
-      >
-        <h2 className="h2-bold text-blue-950">Recommended Events</h2>
-        <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12">
-          <a
-            href="#"
-            className="duration-500 hover:scale-105 relative flex flex-col justify-end overflow-hidden px-8 pb-8 pt-40 w-full h-full mb-10 mx-auto"
-          >
-            <Image
-              src={toto.src}
-              alt="elgrandetoto tour"
-              className="absolute inset-0 h-full w-full object-cover"
-              width={300}
-              height={300}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <h3 className="z-10 mt-3 text-3xl font-bold text-white">
-              Casablanca
-            </h3>
-          </a>
-          {/* Second article */}
-          <a
-            href="#"
-            className="duration-500 hover:scale-105 relative flex flex-col justify-end overflow-hidden px-8 pb-8 pt-40 w-full mx-auto mb-20 h-full"
-          >
-            <Image
-              src={sourire.src}
-              alt="University of Southern California"
-              className="absolute inset-0 h-full w-full object-cover"
-              width={300}
-              height={300}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Rabat</h3>
-          </a>
-        </div>
-      </section>
 
       <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <h2 className="h2-bold">Trust by <br /> Thousands of Events</h2>
